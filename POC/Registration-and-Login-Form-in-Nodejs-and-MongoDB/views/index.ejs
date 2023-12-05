@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+	<html lang="en">
+	
+	<title>Registration</title>
+	
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+	</script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="./css/main.css">
+
+
+	<script type="text/javascript">
+		$(document).ready(function(){
+
+			$( "#form1" ).submit(function(event) {
+				event.preventDefault();
+
+				$.ajax({
+					type: 'POST',
+					url: '/register',
+					data: $('#form1').serialize(),
+					dataType: "json",
+					success: function(response){
+						//alert("a");
+						//console.log(response.Success);
+						$('#form1')[0].reset();
+
+						document.getElementById("check").innerHTML=response.Success;
+         					//ADD THIS CODE
+         					setTimeout(function(){
+         						document.getElementById("check").innerHTML="";
+         					},3000);
+         					if (response.Success=="You are regestered,You can login now.") {
+         						document.getElementById("aa").click();
+         					};
+         				},
+         				error: function() {
+         				}
+         			})
+			});
+		});
+	</script>
+</head>
+<body>
+
+		<div class="toolbar">
+			
+			<div class="dropdown">
+				<a href="#">Home</a>
+				<div class="dropdown-content">
+					<a href="#">Profile</a>
+					<a href="#">Settings</a>
+					<a href="#">Signout</a>
+				</div>
+				<div class="subtopics">
+					Subtopics for Home
+				</div>
+			</div>
+			<div class="dropdown">
+				<a href="#">About</a>
+				<div class="dropdown-content">
+					<a href="#">Documentation</a>
+					<a href="#">History</a>
+					<a href="#">Acheivements</a>
+				</div>
+				<div class="subtopics">
+					Subtopics for About
+				</div>
+			</div>
+			
+			<div class="dropdown">
+				<a href="#">Ticket</a>
+				<div class="dropdown-content">
+					<a href="#">Log a Ticket</a>
+					<a href="#">Ticket Progress</a>
+					<a href="#">CLose Ticket</a>
+				</div>
+				<div class="subtopics">
+					Subtopics for Ticket
+				</div>
+			</div>
+			<div class="dropdown">
+				<a href="#">References</a>
+				<div class="dropdown-content">
+					<a href="#">Links</a>
+					<a href="#">Documents</a>
+					<a href="#">Videos</a>
+				</div>
+				<div class="subtopics">
+					Subtopics for References
+				</div>
+			</div>
+			<div class="dropdown">
+				<a href="#">More</a>
+				<div class="dropdown-content">
+					<a href="#">Images</a>
+					<a href="#">Maps</a>
+					<a href="#">News</a>
+				</div>
+				<div class="subtopics">
+					Subtopics for More
+				</div>
+			</div>
+			
+		</div>
+			
+		</script>
+
+	<div class="col-md-4 col-md-offset-4">
+		<div class = "container">
+		<div>
+			<p>Register Now
+			</p>
+		</div>
+		<div class="form-group">
+			<form id="form1" method="post">
+				<input type="email" name="email" placeholder="E-mail" required="" class="form-control"><br/>
+				<input type="text" name="username" placeholder="Username" required="" class="form-control"><br/>
+				<input type="password" name="password" placeholder="Password" required="" class="form-control"><br/>
+				<input type="password" name="passwordConf" placeholder="Confirm Password" required="" class="form-control"><br/>
+				<input type="submit" value="Register" class="btn btn-success">
+			</form>
+		</div>
+		
+		
+		<div class="mssg bg-danger">
+			<span id="check"></span>
+		</div>
+		<div>
+			<span>Already Registered! <a href="/">Login</a></span>
+		</div>
+		</div>
+		<div id="LangTable"><a href="/register" id="aa"></a>
+		</div>
+	</div>
+</body>
+</html>

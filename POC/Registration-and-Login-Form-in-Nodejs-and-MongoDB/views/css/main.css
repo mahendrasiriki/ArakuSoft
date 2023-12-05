@@ -1,0 +1,190 @@
+/*body,
+ table,
+    thead,
+    tr,
+    tbody,
+    th,
+    td {
+        text-align: center;
+    }*/
+body{
+	font-family: Arial, sans-serif;
+    text-align: center !important;
+    
+    
+}
+p{
+	margin-top: 20px;
+	font-size: 30px;
+}
+input{
+	text-align: left;
+}
+.mssg{
+	margin-top: 5px;
+	margin-bottom: 5px;
+	border-radius: 5px;
+}
+
+body {
+    
+    text-align: center;
+}
+.container {
+    max-width: 600px;
+    margin: 100px auto;
+    margin: 60px left;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+.google-login-btn, .signup-btn {
+    background-color: #4285F4;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+.google-logo, .signup-logo {
+    width: 30px;
+    margin-right: 10px;
+}
+.signup-form {
+    display: none;
+}
+
+.toolbar {
+    position: fixed;
+    top: 0;
+    left:0;
+    width: 100%;
+    background-color: lightgreen;
+    color: white;
+    padding: 0px;
+    text-align: left;
+    display: flex; 
+    justify-content: flex-start;
+}
+
+.toolbar a {
+    text-decoration: none;
+    color: white;
+    padding: 10px 15px;
+    display: inline-block;
+    position: relative;
+}
+
+.dropdown {
+    display: inline-block;
+    position : relative;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 200px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    left: 0; 
+    width : 100%;
+}
+
+.dropdown-content a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: #333;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+.subtopics {
+    position: absolute;
+    top:100%;
+    left: 0;
+    background-color: #f9f9f9;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    display: none;
+    padding: 10px;
+    transform: translateX(-50%);
+    top: calc(100% + 10px);
+}
+
+.toolbar a:hover + .subtopics,
+.subtopics:hover {
+    display: block;
+    top: calc(100% + 10px); 
+    
+}
+.dropdown:hover .dropdown-content {
+    display: block;
+} 
+
+.forgot-password-link {
+    margin-top: 10px;
+    display: block;
+    color: #4285F4;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+ .welcome-container {
+     text-align: center;
+     margin-top: 50px;
+ }
+
+ .welcome-container h1 {
+     font-size: 24px;
+     color: #333;
+ }
+
+ /* Add styles for the admin toolbar */
+ .admin-toolbar {
+     position: fixed;
+     top: 0;
+     left: 0;
+     width: 100%;
+     background-color: lightgreen; /* Google Blue color */
+     color: white;
+     padding: 10px;
+     display: flex;
+     justify-content: flex-start;
+     align-items: center;
+     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+ }
+
+ .admin-toolbar a {
+     text-decoration: none;
+     color: white;
+     padding: 10px 15px;
+ }
+ .admin-form {
+     display: none;
+}
+
+.hidden {
+    display: none;
+}
+ 

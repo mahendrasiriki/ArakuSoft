@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+	</script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="./css/main.css">
+
+    
+</head>
+<body>
+
+<div class="col-md-4 col-md-offset-4">
+<div class = "container">
+<div class="admin-form" id="adminForm" style="display: block;">
+    <h2>Admin Login</h2>
+    <form  onsubmit="return validateAdminPassword()">
+        <input type="text" placeholder="Admin Username" id="adminUsername" required><br>
+        <input type="password" placeholder="Admin Password" id="adminPassword" required><br>
+        <button type="submit">Login as Admin</button>
+    </form>
+</div>
+<div class="admin-toolbar hidden">
+    <!-- Admin Toolbar Content -->
+    <div class="dropdown">
+        <a href="#">Users</a>
+        <div class="dropdown-content">
+            <a href="#">Active Users</a>
+            <a href="#">User's Information</a>
+            <a href="#">Manage Users</a>
+        </div>
+        <div class="subtopics">
+            Subtopics for Users
+        </div>
+    </div>
+    <div class="dropdown">
+        <a href="#">UserGroups</a>
+        <div class="dropdown-content">
+            <a href="#">Banking Officers</a>
+            <a href="#">Accountants</a>
+            <a href="#">Cashiers</a>
+        </div>
+        <div class="subtopics">
+            Subtopics for UserGroups
+        </div>
+    </div>
+</div>
+<div class="welcome-container hidden">
+    <!-- Welcome message for admin -->
+    <h1>Welcome Admin</h1>
+</div>
+</div>
+</div>
+
+<script>
+    function validateAdminPassword() {
+        var adminUsernameField = document.getElementById('adminUsername');
+        var adminPasswordField = document.getElementById('adminPassword');
+        var adminUsername = adminUsernameField.value;
+        var adminPassword = adminPasswordField.value;
+
+        // Simulate admin credentials stored in localStorage
+		localStorage.setItem('adminUsername', 'admin'); 
+        localStorage.setItem('adminPassword', 'admin123');
+        var storedAdminUsername = localStorage.getItem('adminUsername');
+        var storedAdminPassword = localStorage.getItem('adminPassword');
+
+        if (adminUsername === storedAdminUsername && adminPassword === storedAdminPassword) {
+            alert('Admin login successful');
+			
+			var adminToolbar = document.querySelector('.admin-toolbar');
+            var welcomeContainer = document.querySelector('.welcome-container');
+            var loginContainer = document.querySelector('.admin-form');
+            if (adminToolbar && welcomeContainer && loginContainer) {
+                adminToolbar.classList.remove('hidden');
+                welcomeContainer.classList.remove('hidden');
+                loginContainer.style.display = 'none';
+            }
+
+            return false; // To prevent form submission for this demonstration
+        } else {
+            alert('Invalid admin credentials');
+            return false;
+        }
+    }
+
+         
+            
+</script>
+</body>
+</html>

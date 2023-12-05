@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+	</script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="./css/main.css">
+
+	<script type="text/javascript">
+		$(document).ready(function(){
+
+			$( "#form" ).submit(function(event) {
+				event.preventDefault();
+
+				$.ajax({
+					type: 'POST',
+					url: '/',
+					data: $('#form').serialize(),
+					dataType: "json",
+					success: function(response){
+						//alert("a");
+						//console.log(response.Success);
+						$('#form')[0].reset();
+
+						document.getElementById("check").innerHTML=response.Success;
+         					//ADD THIS CODE
+         					setTimeout(function(){
+         						document.getElementById("check").innerHTML="";
+         					},3000);
+         					if (response.Success=="Success!") {
+         						document.getElementById("aa").click();
+								window.location.href = "user.html";
+         					};
+         				},
+         				error: function() {
+         				}
+         			})
+			});
+
+		
+
+		});
+	</script>
+</head>
+<body>
+
+    <div class="toolbar">
+			
+		<div class="dropdown">
+			<a href="#">Home</a>
+			<div class="dropdown-content">
+				<a href="#">Profile</a>
+				<a href="#">Settings</a>
+				<a href="#">Signout</a>
+			</div>
+			<div class="subtopics">
+				Subtopics for Home
+			</div>
+		</div>
+		<div class="dropdown">
+			<a href="#">About</a>
+			<div class="dropdown-content">
+				<a href="#">Documentation</a>
+				<a href="#">History</a>
+				<a href="#">Acheivements</a>
+			</div>
+			<div class="subtopics">
+				Subtopics for About
+			</div>
+		</div>
+		
+		<div class="dropdown">
+			<a href="#">Ticket</a>
+			<div class="dropdown-content">
+				<a href="#">Log a Ticket</a>
+				<a href="#">Ticket Progress</a>
+				<a href="#">CLose Ticket</a>
+			</div>
+			<div class="subtopics">
+				Subtopics for Ticket
+			</div>
+		</div>
+		<div class="dropdown">
+			<a href="#">References</a>
+			<div class="dropdown-content">
+				<a href="#">Links</a>
+				<a href="#">Documents</a>
+				<a href="#">Videos</a>
+			</div>
+			<div class="subtopics">
+				Subtopics for References
+			</div>
+		</div>
+		<div class="dropdown">
+			<a href="#">More</a>
+			<div class="dropdown-content">
+				<a href="#">Images</a>
+				<a href="#">Maps</a>
+				<a href="#">News</a>
+			</div>
+			<div class="subtopics">
+				Subtopics for More
+			</div>
+		</div>
+		
+	</div>
+
+	<div class="col-md-4 col-md-offset-4">
+		<div class="container" id = "loginContainer">
+			<h2>Login</h2>
+			<form id="loginForm">
+				<input type="email" name="email" placeholder="E-mail" required="" class="form-control">
+				<input type="password" placeholder="Password" id="loginPassword" required><br>
+				<button type="submit">Login</button>
+			</form>
+			<div><span>Forgot Password?</span><a href="/forgetpass">Click here</a>
+		    <div>
+			  <span>New User?<a href="/register">Register</a></span>
+			</div>
+		     <button class="admin-login-btn" onclick="toggleAdminForm()">
+					Admin Login
+					</button>
+	
+		     <button class="google-login-btn" onclick="performGoogleLogin()">
+				<img class="google-logo" src="https://developers.google.com/identity/images/g-logo.png" alt="Google Logo">
+				Login with Google
+			</button>
+			
+		
+	</div>
+	
+	<script>
+
+        document.getElementById("loginForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            window.location.href = "user.html";
+        });
+
+
+        
+		
+		function performAdminLogin() {
+        var adminForm = document.getElementById("adminForm");
+
+        if (window.getComputedStyle(adminForm).display === "none") {
+            adminForm.style.display = "block";
+        } else {
+            adminForm.style.display = "none";
+        }
+    }
+
+    function validateAdminPassword() {
+        var adminUsernameField = document.getElementById('adminUsername');
+        var adminPasswordField = document.getElementById('adminPassword');
+        var adminUsername = adminUsernameField.value;
+        var adminPassword = adminPasswordField.value;
+
+        // Simulate admin credentials stored in localStorage
+		localStorage.setItem('adminUsername', 'admin'); 
+        localStorage.setItem('adminPassword', 'admin123');
+        var storedAdminUsername = localStorage.getItem('adminUsername');
+        var storedAdminPassword = localStorage.getItem('adminPassword');
+
+        if (adminUsername === storedAdminUsername && adminPassword === storedAdminPassword) {
+            alert('Admin login successful');
+			
+			var adminToolbar = document.querySelector('.admin-toolbar');
+            if (adminToolbar) {
+            adminToolbar.style.display = 'flex';
+        }
+			
+			var loginContainer = document.querySelector('.container');
+            if (loginContainer) {
+            loginContainer.style.display = 'none';
+        }
+
+            
+            var welcomeContainer = document.createElement('div');
+            welcomeContainer.classList.add('welcome-container');
+            welcomeContainer.innerHTML = '<h1>Welcome Admin</h1>';
+            document.body.appendChild(welcomeContainer);
+
+            
+            var adminToolbar = document.createElement('div');
+            adminToolbar.classList.add('toolbar');
+            adminToolbar.innerHTML = `
+                <div class="dropdown">
+                        <a href="#">Users</a>
+                        <div class="dropdown-content">
+                            <a href="#">Active Users</a>
+							<a href="#">User's Information</a>
+                            <a href="#">Manage Users</a>
+                        </div>
+                        <div class="subtopics">
+                            Subtopics for Users
+                        </div>
+                    </div>
+                    <div class="dropdown">
+                        <a href="#">UserGroups</a>
+                        <div class="dropdown-content">
+						    <a href="#">Banking Officers</a>
+                            <a href="#">Accountants</a>
+                            <a href="#">Cashiers</a>
+                        </div>
+                        <div class="subtopics">
+                            Subtopics for UserGroups
+                        </div>
+                    </div>
+            `;
+            document.body.appendChild(adminToolbar);
+            
+        } else {
+            alert('Invalid admin credentials');
+            return false;
+        }
+    }
+	
+	function toggleAdminForm() {
+            var adminForm = document.getElementById("adminForm");
+			window.location.href = "adminlogin.html";
+
+            if (window.getComputedStyle(adminForm).display === "none") {
+                adminForm.style.display = "block";
+            } else {
+                adminForm.style.display = "none";
+            }
+        }
+		
+
+		
+
+	</script>
+</body>
+</html>

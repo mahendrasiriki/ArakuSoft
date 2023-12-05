@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+	</script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="./css/main.css">
+
+	<script type="text/javascript">
+		$(document).ready(function(){
+
+			$( "#form" ).submit(function(event) {
+				event.preventDefault();
+
+				$.ajax({
+					type: 'POST',
+					url: '/user',
+					data: $('#form').serialize(),
+					dataType: "json",
+					success: function(response){
+						//alert("a");
+						//console.log(response.Success);
+						$('#form')[0].reset();
+
+						document.getElementById("check").innerHTML=response.Success;
+         					//ADD THIS CODE
+         					setTimeout(function(){
+         						document.getElementById("check").innerHTML="";
+         					},3000);
+         					if (response.Success=="Success!") {
+         						document.getElementById("aa").click();
+         					};
+         				},
+         				error: function() {
+         				}
+         			})
+			});
+
+		});
+	</script>
+</head>
+<body>
+
+    <div class="toolbar">
+			
+		<div class="dropdown">
+			<a href="#">Home</a>
+			<div class="dropdown-content">
+				<a href="#">Profile</a>
+				<a href="#">Settings</a>
+				<a href="#">Signout</a>
+			</div>
+			<div class="subtopics">
+				Subtopics for Home
+			</div>
+		</div>
+		<div class="dropdown">
+			<a href="#">About</a>
+			<div class="dropdown-content">
+				<a href="#">Documentation</a>
+				<a href="#">History</a>
+				<a href="#">Acheivements</a>
+			</div>
+			<div class="subtopics">
+				Subtopics for About
+			</div>
+		</div>
+		
+		<div class="dropdown">
+			<a href="#">Ticket</a>
+			<div class="dropdown-content">
+				<a href="#">Log a Ticket</a>
+				<a href="#">Ticket Progress</a>
+				<a href="#">CLose Ticket</a>
+			</div>
+			<div class="subtopics">
+				Subtopics for Ticket
+			</div>
+		</div>
+		<div class="dropdown">
+			<a href="#">References</a>
+			<div class="dropdown-content">
+				<a href="#">Links</a>
+				<a href="#">Documents</a>
+				<a href="#">Videos</a>
+			</div>
+			<div class="subtopics">
+				Subtopics for References
+			</div>
+		</div>
+		<div class="dropdown">
+			<a href="#">More</a>
+			<div class="dropdown-content">
+				<a href="#">Images</a>
+				<a href="#">Maps</a>
+				<a href="#">News</a>
+			</div>
+			<div class="subtopics">
+				Subtopics for More
+			</div>
+		</div>
+		
+	</div>
+
+	<div class="content">
+        <div class="container">
+            <h2>Welcome User</h2>
+            <!-- Other content or welcome message -->
+        </div>
+    </div>
+	
+		<!-- Add an admin form -->
+		
+
+		
+
+	
+</body>
+</html>
