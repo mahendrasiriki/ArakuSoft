@@ -95,6 +95,45 @@
   <script src="assets/js/scripts.js"></script>
   <!-- Custom JS File -->
   <script src="assets/js/custom.js"></script>
+
+  <script src="assets/js/theme.js"></script>
+
+
+
+  
+    
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    
+    const loginForm = document.querySelector('form.needs-validation');
+
+    
+    loginForm.addEventListener('submit', function (event) {
+      event.preventDefault(); 
+
+      
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+
+     
+      const validEmail = 'abc@gmail.com';
+      const validPassword = 'password';
+      const adminEmail = 'admin@gmail.com';
+      const adminPassword = 'admin';
+
+     
+      if (email === validEmail && password === validPassword) {
+          window.location.href = 'userlogin.html';
+        } else if (email === adminEmail && password === adminPassword) {
+          window.location.href = 'index.html';
+        } else {
+          console.log('Invalid credentials');
+      }
+    
+    });
+  });
+</script>
+
 </body>
 
 </html>
